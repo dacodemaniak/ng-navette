@@ -4,11 +4,15 @@
     [disabled]="isSame()"
     (click)="decrement()"
   >
+  &lt;&lt;
+  </button>
   <h1>{{ appTitle }} - {{ currentDay | amLocale: 'fr' | amDateFormat: 'DD MMMM YYYY' }}</h1>
   <button
     type="button"
     (click)="increment()"
   >
+  &gt;&gt;
+  </button>
 </header>
 
 <!-- Displaying all tours -->
