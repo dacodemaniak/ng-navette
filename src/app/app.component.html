@@ -1,23 +1,24 @@
-<header [ngClass]="{'large': !checkOption()}">
-  <h1>{{ appTitle }}</h1>
-
-  <nav>
-    <ul>
-      <li *ngFor="let option of options">
-        {{ option }}
-      </li>
-    </ul>
-  </nav>
-  <input type="text" [(ngModel)]="option">
+<header>
   <button
     type="button"
-    (click)="addOption()"
-    [disabled]="checkOption()"
-    *ngIf="!checkOption()"
+    [disabled]="isSame()"
+    (click)="decrement()"
   >
-    Ajouter
-  </button>
+  <h1>{{ appTitle }} - {{ currentDay | amLocale: 'fr' | amDateFormat: 'DD MMMM YYYY' }}</h1>
+  <button
+    type="button"
+    (click)="increment()"
+  >
 </header>
+
+<!-- Displaying all tours -->
+<div class="tile" *ngFor="let tour of tours">
+  <div class="tile-hour">{{ tour.hour | amDateFormat: 'HH:mm' }}</div>
+  <div class="tile-places">{{ tour.availablePlaces }}</div>
+  <div class="outer-form">
+    Here goes the form (but... later)
+  </div>
+</div>
 
 <router-outlet></router-outlet>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -8,27 +9,57 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   public appTitle = 'navette';
 
-  public options: string[];
-  public option: string;
-  public height: string = '300px';
+  public tours: any[];
+
+  public today: moment.Moment = moment();
+  public currentDay: moment.Moment = this.today.clone();
 
   public constructor() {
-    this.options = new Array<string>();
-
+    this.tours = new Array<any>();
   }
 
   public ngOnInit(): void {
-    this.options.push('Accueil');
-    this.options.push('Navette');
-    this.options.push('Mon compte');
-    this.options.push('Contact');
+    this.tours.push(
+      {
+        hour: this.today.clone().hour(8).minute(0),
+        availablePlaces: 8
+      }
+    );
+    this.tours.push(
+      {
+        hour: this.today.clone().hour(11).minute(0),
+        availablePlaces: 5
+      }
+    );
+    this.tours.push(
+      {
+        hour: this.today.clone().hour(14).minute(0),
+        availablePlaces: 3
+      }
+    );
+    this.tours.push(
+      {
+        hour: this.today.clone().hour(17).minute(0),
+        availablePlaces: 0
+      }
+    );
   }
 
-  public addOption(): void {
-      this.options.push(this.option);
+  public isSame(): boolean {
+    return this.currentDay.isSame(this.today, 'd');
   }
 
-  public checkOption(): boolean {
-    return !(this.option && this.option.trim().length > 0);
+  public increment(): void {
+    const theDate: moment.Moment = this.currentDay.clone();
+    theDate.add(1, 'd');
+
+    this.currentDay = theDate;
+  }
+
+  public decrement(): void {
+    const theDate: moment.Moment = this.currentDay.clone();
+    theDate.subtract(1, 'd');
+
+    this.currentDay = theDate;
   }
 }
