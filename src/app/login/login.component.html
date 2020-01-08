@@ -1,22 +1,22 @@
-<form [formGroup]="loginForm">
-  <div class="field-placeholder">
-    <input type="text" placeholder="Login..." formControlName="login">
-  </div>
-  <div class="error-placeholder" *ngIf="login && login.errors && login.touched">
-    Le login est obligatoire et doit contenir 5 caractères minimum
-  </div>
+<form [formGroup]="loginForm" class="stacked-form">
+  <mat-form-field hintLabel="5 caractères minimum">
+    <input matInput #login placeholder="Login" formControlName="login">
+    <mat-hint align="end">{{login.value?.length || 0}} car.</mat-hint>
+    <mat-error *ngIf="login.errors && login.touched">
+      <span *ngIf="login.errors.minlength">Le login doit avoir au moins 5 caractères</span>
+      <span *ngIf="login.errors.required">Le login est obligatoire</span>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="field-placeholder">
-    <input type="password" placeholder="Mot de passe..." formControlName="password">
-  </div>
-  <div class="error-placeholder" *ngIf="password && password.errors && password.touched">
-    Le mot de passe est obligatoire
-  </div>
+
+  <mat-form-field>
+    <input matInput type="password" #password placeholder="Mot de passe" formControlName="password">
+    <mat-error *ngIf="password && password.errors && password.touched">
+      Le mot de passe est obligatoire
+    </mat-error>
+  </mat-form-field>
 
   <div class="button-placeholder">
-    <button (click)="go()" type="button" [disabled]="isNotFormValid()">
-      Go !
-    </button>
+    <button mat-raised-button color="primary" (click)="go()" [disabled]="isNotFormValid()">Go !</button>
   </div>
 </form>
-{{ loginForm.value | json }}

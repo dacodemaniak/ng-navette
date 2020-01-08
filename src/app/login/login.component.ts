@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { UserService } from './../core/services/user.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +13,10 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router) { }
 
   public get login(): AbstractControl {
     return this.loginForm.controls.login;
@@ -38,7 +44,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public go(): void {}
+  public go(): void {
+    this.userService.registerUser(this.loginForm.value);
+    this.router.navigate(['home']);
+  }
 
   public isNotFormValid(): boolean {
     return this.loginForm.invalid;
