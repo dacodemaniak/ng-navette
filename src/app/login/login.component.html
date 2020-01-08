@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm">
+  <div class="field-placeholder">
+    <input type="text" placeholder="Login..." formControlName="login">
+  </div>
+  <div class="error-placeholder" *ngIf="login && login.errors && login.touched">
+    Le login est obligatoire et doit contenir 5 caractères minimum
+  </div>
+
+  <div class="field-placeholder">
+    <input type="password" placeholder="Mot de passe..." formControlName="password">
+  </div>
+  <div class="error-placeholder" *ngIf="password && password.errors && password.touched">
+    Le mot de passe est obligatoire
+  </div>
+
+  <div class="button-placeholder">
+    <button (click)="go()" type="button" [disabled]="isNotFormValid()">
+      Go !
+    </button>
+  </div>
+</form>
+{{ loginForm.value | json }}

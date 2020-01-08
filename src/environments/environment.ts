@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  worldClockApiRoot: 'http://worldclockapi.com/api/json/utc/now',
+  apiServer: 'http://localhost:5000/'
 };
 
 /*

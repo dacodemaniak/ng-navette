@@ -1,26 +1,28 @@
-<header>
-  <button
-    type="button"
-    [disabled]="isSame()"
-    (click)="decrement()"
-  >
-  &lt;&lt;
-  </button>
-  <h1>{{ appTitle }} - {{ currentDay | amLocale: 'fr' | amDateFormat: 'DD MMMM YYYY' }}</h1>
-  <button
-    type="button"
-    (click)="increment()"
-  >
-  &gt;&gt;
-  </button>
-</header>
+<div *ngIf="today">
+  <header>
+    <button
+      type="button"
+      [disabled]="isSame()"
+      (click)="decrement()"
+    >
+    &lt;&lt;
+    </button>
+    <h1>{{ appTitle }} - {{ currentDay | amLocale: 'fr' | amDateFormat: 'DD MMMM YYYY' }}</h1>
+    <button
+      type="button"
+      (click)="increment()"
+    >
+    &gt;&gt;
+    </button>
+  </header>
 
-<!-- Displaying all tours -->
-<div class="tile" *ngFor="let tour of tours">
-  <div class="tile-hour">{{ tour.hour | amDateFormat: 'HH:mm' }}</div>
-  <div class="tile-places">{{ tour.availablePlaces }}</div>
-  <div class="outer-form">
-    Here goes the form (but... later)
+  <!-- Displaying all tours -->
+  <div class="tile" *ngFor="let tour of tours">
+    <div class="tile-hour">{{ tour.hour | amDateFormat: 'HH:mm' }}</div>
+    <div class="tile-places">{{ tour.availablePlaces }}</div>
+    <div class="outer-form">
+      Here goes the form (but... later)
+    </div>
   </div>
 </div>
 
