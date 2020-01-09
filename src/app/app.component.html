@@ -1,7 +1,18 @@
 <header>
   <h1>{{ appTitle }}</h1>
+
+  <ul>
+    <li>
+      <mat-icon
+        (click)="goHome()" class="add-cursor">home</mat-icon>
+    </li>
+    <li>
+      <a [routerLink]="['login']">Login</a>
+    </li>
+  </ul>
 </header>
 
 <router-outlet></router-outlet>
+
 
 <footer></footer>

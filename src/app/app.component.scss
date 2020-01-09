@@ -1,6 +1,11 @@
 header {
-    border: 1px white;
-    &.large {
-        background-color: rgb(128, 128, 128);
+    border: 1px black;
+
+    mat-icon {
+      &.add-cursor {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
 }
