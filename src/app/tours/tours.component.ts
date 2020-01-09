@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TourDateService } from './../core/services/tour-date.service';
+import { WsClockService } from './../core/services/ws-clock.service';
+
 import { pipe } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -18,13 +20,18 @@ export class ToursComponent implements OnInit {
   public currentDay: moment.Moment;
 
   public constructor(
-    private tourDateService: TourDateService
+    private tourDateService: TourDateService,
+    private clock: WsClockService
   ) {
     this.tours = new Array<any>();
   }
 
 
   public ngOnInit(): void {
+    this.clock.receiveEvent().subscribe((message: any) => {
+      console.log(message);
+    });
+
     // Invoke service to get current currentDay
     this.tourDateService.getUtcDate()
     .pipe(

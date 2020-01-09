@@ -16,6 +16,11 @@ import { ToursComponent } from './tours/tours.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 
+// Sockets...
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'ws://localhost:8100', options: {}};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +35,7 @@ import { MaterialModule } from './shared/material/material.module';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     AuthGuard
