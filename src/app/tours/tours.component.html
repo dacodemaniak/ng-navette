@@ -5,14 +5,14 @@
       [disabled]="isSame()"
       (click)="decrement()"
     >
-    &lt;&lt;
+    <mat-icon>arrow_back</mat-icon>
     </button>
     <h1>{{ currentDay | amLocale: 'fr' | amDateFormat: 'DD MMMM YYYY' }}</h1>
     <button
       type="button"
       (click)="increment()"
     >
-    &gt;&gt;
+    <mat-icon>arrow_forward</mat-icon>
     </button>
   </header>
 

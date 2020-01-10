@@ -45,8 +45,11 @@ export class LoginComponent implements OnInit {
   }
 
   public go(): void {
-    this.userService.registerUser(this.loginForm.value);
-    this.router.navigate(['home']);
+    if (this.userService.controlUser(this.loginForm.value)) {
+      this.router.navigate(['home']);
+    } else {
+      // Snackbar to inform user that he is a fu** b*st*rd
+    }
   }
 
   public isNotFormValid(): boolean {
